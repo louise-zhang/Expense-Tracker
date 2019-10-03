@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="appBarColor">#00E4B2</color>
+    <color name="settingsColor">#A9A9A9</color>
+
+    <!-- Text Color -->
+    <color name="txtColor_grey">#999999</color>
+    <color name="btnTxtColor_white">#FFFFFF</color>
+    <color name="txtColor_black">#000000</color>
+
+    <!-- Background Color -->
+    <color name="colorBtnBackground_green">#00E4B2</color>
+    <color name="colorBtnBackground_red">#F44336</color>
+    <color name="colorBackground_light_green">#5700E4B2</color>
+
+
+    <!-- Line Color -->
+    <color name="colorLine_grey">#DCDCDC</color>
+    <color name="my_spinner_text_color">#999999</color>
+
+</resources>

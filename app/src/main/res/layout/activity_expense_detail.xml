@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".ExpenseDetailActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        />
+
+    <RelativeLayout
+        android:id="@+id/amount_rl"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="80dp">
+
+        <TextView
+            android:id="@+id/listAmount"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_light_green_gradient"
+            android:gravity="right|center"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="23sp"
+            android:textColor="@color/txtColor_black"
+            android:textStyle="bold"/>
+
+
+        <ImageView
+            android:id="@+id/icon_amount"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_attach_money_black_24dp"
+            android:tint="#ffffff"/>
+
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/category_rl"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/amount_rl">
+
+        <TextView
+            android:id="@+id/listCategory"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_light_green_gradient"
+            android:gravity="right|center"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="23sp"
+            android:textColor="@color/txtColor_black"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/icon_category"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_sort_black_24dp"
+            android:tint="#ffffff"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/date_rl"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/category_rl">
+
+        <TextView
+            android:id="@+id/listDatePick"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@drawable/bg_light_green_gradient"
+            android:gravity="right|center"
+            android:maxLength="10"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="23sp"
+            android:textColor="@color/txtColor_black"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:id="@+id/icon_date"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_date_range_black_24dp"
+            android:tint="#ffffff"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/date_rl"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded_green"
+        android:text="Edit"
+        android:textColor="@color/btnTxtColor_white"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnEdit"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_rounded_red"
+        android:text="Delete"
+        android:textColor="@color/btnTxtColor_white"
+        android:textSize="20sp"
+        android:textAllCaps="false"
+        android:onClick="confirmDelete"
+        />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".SignUpActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="80dp"
+            android:maxLength="50"
+            android:textSize="20sp"
+            android:hint="Email address"
+            android:paddingRight="60dp"
+            android:paddingLeft="60dp"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/etUsername"
+            android:layout_marginTop="5dp"
+            android:maxLength="20"
+            android:textSize="20sp"
+            android:hint="Password"
+            android:paddingRight="60dp"
+            android:paddingLeft="60dp"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/etRpPassword"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@+id/etPassword"
+            android:layout_marginTop="5dp"
+            android:maxLength="20"
+            android:textSize="20sp"
+            android:hint="Repeat password"
+            android:paddingRight="60dp"
+            android:paddingLeft="60dp"
+            android:inputType="textPassword"
+            />
+
+
+
+        <Button
+            android:id="@+id/btnCreateAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_below="@+id/etRpPassword"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/btn_rounded_green"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:text="Create account"
+            android:textColor="@color/btnTxtColor_white"
+            android:textAllCaps="false"/>
+
+
+
+        <TextView
+            android:id="@+id/alreadySignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnCreateAccount"
+            android:layout_marginTop="150dp"
+            android:layout_centerHorizontal="true"
+            android:text="Already have an account?"
+            android:textColor="#999999"
+            android:textSize="20sp"/>
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/alreadySignUp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:text="Sign in"
+            android:background="@drawable/btn_rounded_green"
+            android:textSize="20sp"
+            android:textColor="@color/btnTxtColor_white"
+            android:textAllCaps="false"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
