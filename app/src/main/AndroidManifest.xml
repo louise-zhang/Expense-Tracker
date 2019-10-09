@@ -20,10 +20,15 @@
         <activity
             android:name=".NavActivity"
             android:theme="@style/AppTheme.NoActionBar">
-<!--            <meta-data-->
-<!--                android:name="android.app.searchable"-->
-<!--                android:resource="@xml/searchable">-->
-<!--            </meta-data>-->
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+
         </activity>
 
         <activity
@@ -44,6 +49,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

@@ -32,6 +32,7 @@ public class ExpenseDetailActivity extends AppCompatActivity {
         updateBtn = (Button) findViewById(R.id.btnEdit);
 
         Intent intent = getIntent();
+
         final String amount = intent.getStringExtra(IntentString.AMOUNT);
         listAmount.setText(amount);
 
@@ -41,18 +42,18 @@ public class ExpenseDetailActivity extends AppCompatActivity {
         final String date_pick = intent.getStringExtra(IntentString.DATEPICKER);
         listDatePick.setText(date_pick);
 
-        final int key = intent.getIntExtra(IntentString.KEY_ID,-1);
+        final int key = intent.getIntExtra(IntentString.KEY_ID, -1);
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent detailIntent = new Intent(ExpenseDetailActivity.this, AddExpenseActivity.class);
-                detailIntent.putExtra(IntentString.KEY_ID,key);
-                detailIntent.putExtra(IntentString.AMOUNT,amount);
-                detailIntent.putExtra(IntentString.CATEGORY,category);
-                detailIntent.putExtra(IntentString.DATEPICKER,date_pick);
-                detailIntent.putExtra(IntentString.IS_ADD,false);
+                detailIntent.putExtra(IntentString.KEY_ID, key);
+                detailIntent.putExtra(IntentString.AMOUNT, amount);
+                detailIntent.putExtra(IntentString.CATEGORY, category);
+                detailIntent.putExtra(IntentString.DATEPICKER, date_pick);
+                detailIntent.putExtra(IntentString.IS_ADD, false);
 
                 startActivity(detailIntent);
 
@@ -74,7 +75,7 @@ public class ExpenseDetailActivity extends AppCompatActivity {
      */
     public void confirmDelete(View view) {
         Intent intent = getIntent();
-        final int key = intent.getIntExtra(IntentString.KEY_ID,-1);
+        final int key = intent.getIntExtra(IntentString.KEY_ID, -1);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete Dialog")
                 .setMessage("Are you sure you want to delete?")

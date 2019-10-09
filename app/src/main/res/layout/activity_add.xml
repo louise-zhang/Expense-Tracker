@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddExpenseActivity">
+
+    <include
+        android:id="@+id/app_bar"
+        layout="@layout/app_bar" />
+
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:digits="1234567890."
+        android:hint="0.00"
+        android:inputType="numberDecimal"
+        android:maxLength="10"
+        android:paddingLeft="20dp"
+        android:textSize="20sp" />
+
+    <FrameLayout
+        android:id="@+id/category_fl"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:maxLength="10"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textSize="20sp">
+
+        <TextView
+            android:id="@+id/txtCategory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:hint="Category"
+            android:textColor="#202020"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spCategory"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="marquee"
+            android:gravity="center_vertical"
+            android:spinnerMode="dropdown"
+            android:textColor="@color/txtColor_grey"
+            android:textColorHint="@color/txtColor_grey"
+            android:theme="@style/mySpinnerItemStyle" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/date_fl"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:maxLength="10"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textSize="20sp">
+
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:hint="Date"
+            android:textColor="#202020"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btnDatePicker"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center|right"
+            android:background="@drawable/ic_date_range_black_24dp"
+            android:backgroundTint="@color/colorBtnBackground_green" />
+    </FrameLayout>
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#848484" />
+
+    <FrameLayout
+        android:id="@+id/img_fl"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:maxLength="10"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textSize="20sp">
+
+        <ImageView
+            android:id="@+id/imgPicture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnTakePhoto"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center|right"
+            android:background="@drawable/ic_camera_alt_black_24dp"
+            android:backgroundTint="@color/colorBtnBackground_green" />
+
+    </FrameLayout>
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="20dp"
+        android:background="#848484" />
+
+    <FrameLayout
+        android:id="@+id/note_fl"
+        android:layout_width="350dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:maxLength="10"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textSize="20sp">
+
+        <EditText
+            android:id="@+id/etNote"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Note"
+            android:maxLength="10"
+            android:paddingLeft="20dp"
+            android:paddingBottom="10dp"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:id="@+id/btnNote"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center|right"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/ic_edit_black_24dp"
+            android:backgroundTint="@color/colorBtnBackground_green" />
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnAddTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/transactionDate"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_rounded_green"
+        android:text="Add"
+        android:textAllCaps="false"
+        android:textColor="@color/btnTxtColor_white"
+        android:textSize="20sp" />
+
+
+</LinearLayout>

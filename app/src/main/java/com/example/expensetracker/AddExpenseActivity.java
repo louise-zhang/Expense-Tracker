@@ -4,18 +4,15 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.Spanned;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -45,6 +42,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
 
     private boolean isAdd = true;
     private String addAmount = "0";
+    //    private float addAmount;
     private String addCategory;
     private String addDatePick;
     private int id;
@@ -54,7 +52,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_expense);
+        setContentView(R.layout.activity_add);
 
         findViewById(R.id.btnDatePicker).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +64,26 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
         spinner = findViewById(R.id.spCategory);
 
         amount = findViewById(R.id.etAmount);
-//        amount.setInputType(EditorInfo.TYPE_CLASS_PHONE);
+        //FLAG DECIMAL
+        amount.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL | InputType.TYPE_CLASS_NUMBER);
+        //set input filter
+        amount.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                if (source.equals(".") && dest.toString().length() == 0) {
+                    return "0.";
+                }
+                if (dest.toString().contains(".")) {
+                    int index = dest.toString().indexOf(".");
+                    int length = dest.toString().substring(index).length();
+                    if (length == 3) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        }});
 
         category = findViewById(R.id.txtCategory);
         //for the date picker
@@ -109,8 +126,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
 
                 if (parent.getItemAtPosition(position).equals("Select Category")) {
                     //do nothing
-                }
-                else {
+                } else {
                     //on selecting a spinner item
                     String item = parent.getItemAtPosition(position).toString();
 
@@ -119,6 +135,7 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
                     category.setText(item);
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
                 //auto-generated method
@@ -128,40 +145,37 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
         // Add transaction
         Intent addIntent = getIntent();
         isAdd = addIntent.getBooleanExtra(IntentString.IS_ADD, true);
-//        addAmount = addIntent.getStringExtra(IntentString.AMOUNT);
-//        addCategory = addIntent.getStringExtra(IntentString.CATEGORY);
-//        addDatePick = addIntent.getStringExtra(IntentString.DATEPICKER);
+        addAmount = addIntent.getStringExtra(IntentString.AMOUNT);
+        addCategory = addIntent.getStringExtra(IntentString.CATEGORY);
+        addDatePick = addIntent.getStringExtra(IntentString.DATEPICKER);
         id = addIntent.getIntExtra(IntentString.KEY_ID, -1);
 
         if (isAdd) {
             btnAddTransaction.setText("ADD");
         } else {
             btnAddTransaction.setText("UPDATE");
-//            amount.setText(addAmount);
-//            category.setText(addCategory);
-//            dateDisplay.setText(addDatePick);
+            amount.setText(addAmount);
+            category.setText(addCategory);
+            dateDisplay.setText(addDatePick);
         }
-
-
-//        if(uAcount.equals("") || uAcount == null || Double.parseDouble(uAcount) <= 0){
-//            Toast.makeText(getApplicationContext(), getString(R.string.input_message),
-//                    Toast.LENGTH_SHORT).show();
-//            return;
-//        }
 
         btnAddTransaction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String uAcount = amount.getText().toString();
+                String uAmount = amount.getText().toString();
                 String cate = category.getText().toString();
                 String dtPick = dateDisplay.getText().toString();
 
+                boolean isLegal = verifyData(uAmount, cate, dtPick);
+                if (!isLegal)
+                    return;
+
                 if (isAdd) {
-                    add("$ " + uAcount, cate, dtPick);
+                    add( "$ " + uAmount, cate, dtPick);
                     Toast.makeText(getApplicationContext(), "New transaction added", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
-                    update(id, uAcount, cate, dtPick);
+                    update(id, uAmount, cate, dtPick);
                     //intent.setClass(AddExpenseActivity.this, ExpenseDetailActivity.class);
                     Toast.makeText(getApplicationContext(), "Transaction updated", Toast.LENGTH_SHORT).show();
                     finish();
@@ -203,20 +217,53 @@ public class AddExpenseActivity extends AppCompatActivity implements DatePickerD
         dateDisplay.setText(date);
     }
 
-    /*
-    add method
+
+    /**
+     * add method
+     *
+     * @param uAmount
+     * @param aCate
+     * @param aDatePick
      */
-    private void add(String aAcount, String aCate, String aDatePick) {
+    private void add(String uAmount, String aCate, String aDatePick) {
         dbHandler = new DbHandler(AddExpenseActivity.this);
-        dbHandler.insertTransDetails(aAcount, aCate, aDatePick);
+        dbHandler.insertTransDetails(uAmount, aCate, aDatePick);
     }
 
-    /*
-    update method
+    /**
+     * update method
+     * @param key
+     * @param uAmount
+     * @param aCate
+     * @param aDatePick
      */
-    private void update(int key, String aAcount, String aCate, String aDatePick) {
+    private void update(int key, String uAmount, String aCate, String aDatePick) {
         dbHandler = new DbHandler(AddExpenseActivity.this);
-        dbHandler.updateListDetails(key, aAcount, aCate, aDatePick);
+        dbHandler.updateListDetails(key, uAmount, aCate, aDatePick);
     }
 
+
+    /**
+     * Input cannot be empty
+     * @param uAmount
+     * @param aCate
+     * @param aDatePick
+     * @return true : all the params are legal / false :
+     */
+    private boolean verifyData(String uAmount, String aCate, String aDatePick) {
+        if (TextUtils.isEmpty(uAmount)) {
+            Toast.makeText(getApplicationContext(), "Amount cannot be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(aCate)) {
+            Toast.makeText(getApplicationContext(), "Category cannot be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (TextUtils.isEmpty(aDatePick)) {
+            Toast.makeText(getApplicationContext(), "Date cannot be empty", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
+
+}

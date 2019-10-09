@@ -68,14 +68,14 @@ public class SignInActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(LoginCheck.isEmpty(editUser.getText().toString()) || LoginCheck.isEmpty(editPwd.getText().toString())){
+                if (LoginCheck.isEmpty(editUser.getText().toString()) || LoginCheck.isEmpty(editPwd.getText().toString())) {
                     Toast.makeText(SignInActivity.this, "Please enter a valid email or password", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
 
                 //save login account info to SharedPreferences
-                SharedPreferences mySharedPreferences= getSharedPreferences("setting",Activity.MODE_PRIVATE);
+                SharedPreferences mySharedPreferences = getSharedPreferences("setting", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = mySharedPreferences.edit();//SharedPreferences.Editor
                 editor.putString("accountDetails", editUser.getText().toString()); //putString method to save info
                 editor.commit(); //

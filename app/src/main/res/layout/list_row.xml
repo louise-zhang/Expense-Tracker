@@ -2,37 +2,38 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="20dp"
+    android:layout_height="80dp"
+    android:layout_marginLeft="10dp"
     android:layout_marginRight="20dp"
-    android:layout_gravity="center">
-
-    <TextView
-        android:id="@+id/tvAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="28sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tvDatePick"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvAmount"
-        android:layout_marginTop="6dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"/>
+    android:padding="5dp">
 
     <TextView
         android:id="@+id/tvCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvDatePick"
-        android:layout_alignBottom="@+id/tvDatePick"
-        android:layout_alignParentRight="true"
+        android:layout_marginTop="5dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp"/>
+        android:textSize="23sp"/>
+
+    <TextView
+        android:id="@+id/tvDatePick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCategory"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginRight="5dp"
+        />
 
 
 </RelativeLayout>

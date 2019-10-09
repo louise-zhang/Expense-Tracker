@@ -2,5 +2,7 @@
 <searchable
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:label="@string/app_name"
-    android:hint="Search expense">
+    android:hint="Search expense"
+    android:icon="@drawable/ic_search_black_24dp"
+    android:searchMode="queryRewriteFromText">
 </searchable>

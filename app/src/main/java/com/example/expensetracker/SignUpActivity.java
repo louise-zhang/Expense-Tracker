@@ -47,43 +47,42 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 boolean isTrue = true;
-                if(LoginCheck.isEmailValid(editUser.getText().toString()) == false){
+                if (LoginCheck.isEmailValid(editUser.getText().toString()) == false) {
                     isTrue = false;
                     Toast.makeText(SignUpActivity.this, "Incorrect email address format!", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(LoginCheck.isEmpty(editPwd.getText().toString())){
+                if (LoginCheck.isEmpty(editPwd.getText().toString())) {
                     isTrue = false;
                     Toast.makeText(SignUpActivity.this, "Password can't be blank", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                if(isTrue = true){
+                if (isTrue = true) {
                     //call DBOpenHelper
                     DbHandler handler = new DbHandler(SignUpActivity.this);
                     SQLiteDatabase db = handler.getWritableDatabase();
-                    Cursor c = db.query("accountDetails",null,
+                    Cursor c = db.query("accountDetails", null,
                             "username=? and password=?",
-                            new String[]{editUser.getText().toString(),editPwd.getText().toString()},
-                            null,null,null);
-                    if(c!=null && c.getCount() >= 1){
+                            new String[]{editUser.getText().toString(), editPwd.getText().toString()},
+                            null, null, null);
+                    if (c != null && c.getCount() >= 1) {
                         Toast.makeText(SignUpActivity.this,
                                 "Username already exists",
                                 Toast.LENGTH_SHORT).show();
                         c.close();
-                    }
-                    else{
+                    } else {
                         //insert data
-                        ContentValues values= new ContentValues();
-                        values.put("username",editUser.getText().toString());
-                        values.put("password",editPwd.getText().toString());
-                        long rowid = db.insert("accountDetails",null,values);
+                        ContentValues values = new ContentValues();
+                        values.put("username", editUser.getText().toString());
+                        values.put("password", editPwd.getText().toString());
+                        long rowid = db.insert("accountDetails", null, values);
 
                         Toast.makeText(SignUpActivity.this, "You have successfully registered and please sign in.", Toast.LENGTH_LONG).show();
                         finish();
                     }
                     db.close();
-                }else{
+                } else {
                     return;
                 }
             }

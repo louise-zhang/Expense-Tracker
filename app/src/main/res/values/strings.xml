@@ -28,4 +28,7 @@
 <string name="edit_in">编辑收入</string>
 <string name="edit_out">编辑支出</string>
 
+
+    <string name="search_expense">Search expense</string>
+
 </resources>

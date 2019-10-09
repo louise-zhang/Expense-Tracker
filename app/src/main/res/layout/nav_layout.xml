@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/nav_layout"
+    tools:context=".NavActivity">
+
+
+<androidx.drawerlayout.widget.DrawerLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start"
     tools:context=".NavActivity">
+    <!-- The navigation drawer that comes from the left -->
 
     <!-- This LinearLayout represents the contents of the screen  -->
     <LinearLayout
@@ -21,18 +29,50 @@
             android:id="@+id/app_bar"
             layout="@layout/app_bar"/>
 
-
-
         <!-- The main content view where fragments are loaded -->
         <FrameLayout
             android:id="@+id/fragment_container"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_weight="1"
+            android:layout_height="0dp"/>
+
+        <FrameLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bottom_nav"
+                    android:background="@color/colorBtnBackground_green"
+                    app:itemIconTint="@color/btnTxtColor_white"
+                    app:itemTextColor="@color/btnTxtColor_white"
+                    app:menu="@menu/bottom_menu" />
+
+            </FrameLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                app:backgroundTint="@color/appBarColor"
+                app:srcCompat = "@drawable/ic_add_white_24dp"
+                android:layout_marginBottom="5dp"
+                />
+        </FrameLayout>
 
     </LinearLayout>
 
-    <!-- The navigation drawer that comes from the left -->
     <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
@@ -42,5 +82,6 @@
         app:headerLayout="@layout/nav_header"
         app:menu = "@menu/drawer_menu"
         />
-
 </androidx.drawerlayout.widget.DrawerLayout>
+
+</RelativeLayout>
